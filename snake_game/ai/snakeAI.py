@@ -1,42 +1,3 @@
-from label import Label
-from pathlib import Path
-from random import randint
-import pygame as pg
-from constants import *
-
-# Defining path for the images and text file
-images_path = Path(__file__).parents[1] / "images"
-snake_game_path = Path(__file__).parents[1] / "snake_game"
-snake_game_path = str(snake_game_path) + '\HISCORE.txt'
-
-# Initializing pygame
-pg.init()
-
-class Agent(object):
-    
-        def __init__(self):
-            self.action = RIGHT_RELATIVE
-
-        def run(self):
-            snake = SnakeAI()
-            
-            while True:
-                # Moves based on the ai's action
-                snake.onKeyboard(self.action)
-                snake.move(snake.dir)
-
-                # Checks if snake ate food
-                snake.ate()
-
-                # Checks if snake died
-                snake.check_dead()
-                
-                # Drawing everything to screen
-                snake.draw_grid()
-                snake.draw()
-                snake.food.draw_food(snake.surface)
-
-
 class SnakeAI(object):
 
     def __init__(self, surface):
@@ -134,28 +95,3 @@ class SnakeAI(object):
                     pg.draw.rect(self.surface, LIGHTPINK, square)
                 else:
                     pg.draw.rect(self.surface, PINK, square)
-
-
-class Food(object):
-
-    def __init__(self):
-        self.pos = (690, 300)
-
-    def get_food_pos(self):
-        return self.pos
-
-    # Randomizes the foods positions
-    def randomize_pos(self, length, snake_pos):
-        self.pos = randint(0, int(GRIDWIDTH-1)) * GRIDSIZE, randint(0, int(GRIDHEIGHT-1)) * GRIDSIZE
-        self.test_pos(length, snake_pos)
-
-    # Checks if the food is not spawning in snake
-    def test_pos(self, length, snake_pos):
-        for p in snake_pos:
-            if list(self.pos) == list(p):
-                self.randomize_pos(length)
-
-    def draw_food(self, surface):
-        red_square_img = pg.image.load(images_path / "red_square_img.png")
-        red_square_label = Label(red_square_img, 1)
-        red_square_label.draw(self.pos[0], self.pos[1], surface)
