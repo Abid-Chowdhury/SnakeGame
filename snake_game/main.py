@@ -9,7 +9,7 @@ from mod import put_number_on_screen
 from pathlib import Path
 from random import randint
 import pygame as pg
-
+from constants import *
 
 # Defining path for the images
 images_path = Path(__file__).parents[1] / "images"
@@ -22,29 +22,6 @@ pg.init()
 
 # Initializing icon
 icon = pg.image.load(images_path / "snake_icon_img.png")
-
-# Initializing constant variables
-WIDTH, HEIGHT = 960, 630
-
-YELLOW = (255, 255, 0)
-LIGHTBLUE = (164, 219, 232)
-BLUE = (137, 207, 240)
-RED = (255 ,61, 65)
-BLACK = (31, 32, 34)
-WHITE = (255, 255, 255)
-GREEN = (50, 205, 50)
-
-GRIDSIZE = 30  
-GRIDHEIGHT = HEIGHT / GRIDSIZE
-GRIDWIDTH = WIDTH / GRIDSIZE
-
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
-
-list_of_keys = [pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT, pg.K_w, pg.K_s, pg.K_a, pg.K_d]
-
 
 class Snake(object):
 
@@ -115,17 +92,17 @@ class Snake(object):
                 exit()
 
             if event.type == pg.KEYDOWN:
-                if event.key in list_of_keys:
-                    if event.key == list_of_keys[0] or event.key == list_of_keys[4]: # if click w or ^
+                if event.key in LIST_OF_KEYS:
+                    if event.key == LIST_OF_KEYS[0] or event.key == LIST_OF_KEYS[4]: # if click w or ^
                         if self.dir== DOWN or self.dir== UP: return # if direction is up and you click down then nothing happens
                         self.dir = UP  
-                    elif event.key == list_of_keys[1]or event.key == list_of_keys[5]: # if click s or ↓
+                    elif event.key == LIST_OF_KEYS[1]or event.key == LIST_OF_KEYS[5]: # if click s or ↓
                         if self.dir== UP or self.dir== DOWN: return # if direction is down and you click up then nothing happens
                         self.dir= DOWN
-                    elif event.key == list_of_keys[2]or event.key == list_of_keys[6]:  # if click a or <
+                    elif event.key == LIST_OF_KEYS[2]or event.key == LIST_OF_KEYS[6]:  # if click a or <
                         if self.dir== RIGHT or self.dir== LEFT: return # if direction is left and you click right then nothing happens
                         self.dir= LEFT
-                    elif event.key ==  list_of_keys[3]or event.key == list_of_keys[7]: # if click d or >
+                    elif event.key ==  LIST_OF_KEYS[3]or event.key == LIST_OF_KEYS[7]: # if click d or >
                         if self.dir== LEFT or self.dir== RIGHT: return # if direction is right and you click left then nothing happens
                         self.dir = RIGHT
                     

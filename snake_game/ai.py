@@ -2,7 +2,7 @@ from label import Label
 from pathlib import Path
 from random import randint
 import pygame as pg
-
+from constants import *
 
 # Defining path for the images and text file
 images_path = Path(__file__).parents[1] / "images"
@@ -11,31 +11,6 @@ snake_game_path = str(snake_game_path) + '\HISCORE.txt'
 
 # Initializing pygame
 pg.init()
-
-# Initializing constant variables
-WIDTH, HEIGHT = 960, 630
-
-YELLOW = (255, 255, 0)
-RED = (255 ,61, 65)
-BLACK = (31, 32, 34)
-WHITE = (255, 255, 255)
-GREEN = (50, 205, 50)
-PINK = (255, 182, 201)
-LIGHTPINK = (255, 219, 233)
-
-GRIDSIZE = 30  
-GRIDHEIGHT = HEIGHT / GRIDSIZE
-GRIDWIDTH = WIDTH / GRIDSIZE
-
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
-
-RIGHT_RELATIVE = 1
-LEFT_RELATIVE = 2 
-LISTOFKEYS = [pg.K_UP, pg.K_DOWN, pg.K_LEFT, pg.K_RIGHT, pg.K_w, pg.K_s, pg.K_a, pg.K_d]
-
 
 class Agent(object):
     
